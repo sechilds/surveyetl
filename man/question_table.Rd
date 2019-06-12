@@ -6,7 +6,26 @@
 \usage{
 question_table(df, struct)
 }
+\arguments{
+\item{df}{The survey data frame. It should be labelled data.}
+
+\item{struct}{A data frame holding the structure of the survey.
+This should include the field name and other information on
+each question that gets merged into the question table.}
+}
+\value{
+A tibble containing the field name, the full text of the
+  question and any survey structure information.
+}
 \description{
+Create a table that includes the full text of each survey question.
+}
+\details{
 Extract the text of each question from the labelled
 data loaded from the SPSS file.
+}
+\examples{
+question_table(cgpss, data_frame(field_name=character()))
+
+question_table(nsse, nsse_structure)
 }
