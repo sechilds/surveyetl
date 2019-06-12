@@ -9,6 +9,8 @@
 #' @param struct A data frame holding the structure of the survey.
 #'   This should include the field name and other information on
 #'   each question that gets merged into the question table.
+#' @param excluded_fields A list of fields that are not questions,
+#'   so shouldn't be saved to the question list.
 #' @return A tibble containing the field name, the full text of the
 #'   question and any survey structure information.
 #' @examples
@@ -16,14 +18,15 @@
 #'
 #' question_table(nsse, nsse_structure)
 #' @export
-question_table <- function(df, struct) {
+question_table <- function(df, struct, excluded_fields = NULL) {
   questions <- df %>%
+    dplyr::filter(-one_of(excluded_fields)) %>%
     var_label %>%
     Filter(. %>% is.null %>% `!`, .)
   data <- tibble(field_name = names(questions),
                  question_text = questions) %>%
     unnest()
-  data <- tibble::rowid_to_column(data, "question_id")
+  data <- tibble::rowid_to_column(data, "question_file_order")
   data <- left_join(data, struct, by='field_name')
   as.tibble(data)
 }

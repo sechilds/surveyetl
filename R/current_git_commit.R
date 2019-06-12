@@ -7,7 +7,7 @@
 #'   are in the Git repository before checking for the
 #'   latest hash. If `FALSE`, we assume you are there.
 #' @return The SHA-1 hash of the current Git Commit
-#' @example
+#' @examples
 #' current_git_commit()
 #' @export
 current_git_commit <- function(docker = TRUE) {

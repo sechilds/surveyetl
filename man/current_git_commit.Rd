@@ -18,3 +18,6 @@ The SHA-1 hash of the current Git Commit
 Return the hash of the current git commit.
 We use this for adding to the report or the database.
 }
+\examples{
+current_git_commit()
+}

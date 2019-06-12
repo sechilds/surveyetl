@@ -4,7 +4,7 @@
 \alias{question_table}
 \title{Question Table}
 \usage{
-question_table(df, struct)
+question_table(df, struct, excluded_fields = NULL)
 }
 \arguments{
 \item{df}{The survey data frame. It should be labelled data.}
@@ -12,6 +12,9 @@ question_table(df, struct)
 \item{struct}{A data frame holding the structure of the survey.
 This should include the field name and other information on
 each question that gets merged into the question table.}
+
+\item{excluded_fields}{A list of fields that are not questions,
+so shouldn't be saved to the question list.}
 }
 \value{
 A tibble containing the field name, the full text of the
