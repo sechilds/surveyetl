@@ -13,5 +13,6 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     dplyr,
-    labelled
+    labelled,
+    magrittr
 RoxygenNote: 6.1.1.9000

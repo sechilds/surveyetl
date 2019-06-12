@@ -10,31 +10,31 @@
 #' @param df The survey data frame. It should have variable labels.
 #' @param excluded_fields A list of field names that are not
 #'   questions and shouldn't be included.
-#' @param survey_id A string representing the name of the survey.
 #' @param respondent_id_field The field in the data frame that
 #'   uniquely identifies each respondent within that cycle of
 #'   the survey.
 #' @param survey_year_field the field in the data frame that
 #'   identifies the year of the survey.
+#' @param survey_id A string representing the name of the survey.
 #' @return A tibble containing all the responses of the survey,
 #'   with the actual response, a character label and a score.
 #' @examples
 #' response_table(cgpss,
-#'                c('LANGUAGE, 'UNIV', 'PROGRAM_NAME', 'CIP'),
 #'                survey_id = 'CGPSS',
 #'                respondent_id_field = UNIV_RecordNum,
-#'                survey_year_field = SURVEY_YEAR)
+#'                survey_year_field = SURVEY_YEAR,
+#'                excluded_fields = c('LANGUAGE', 'UNIV', 'PROGRAM_NAME', 'CIP'))
 #' @export
 response_table <- function(df,
-                           excluded_fields,
-                           survey_id = NULL,
                            respondent_id_field = NULL,
-                           survey_year_field = NULL)
-  respondent_id_field = enquo(respondent_id_field)
-  survey_year_field = enquo(survey_year_field)
+                           survey_year_field = NULL,
+                           excluded_fields,
+                           survey_id = NULL) {
+  respondent_id_field = dplyr::enquo(respondent_id_field)
+  survey_year_field = dplyr::enquo(survey_year_field)
 
   df %>%
-    select(-one_of(exclued_fields)) %>%
+    select(-one_of(excluded_fields)) %>%
     mutate(survey_id = survey_id,
            respondent_id = !! respondent_id_field,
            survey_year = !! survey_year_field) %>%
@@ -57,3 +57,4 @@ response_table <- function(df,
     mutate(score = as.numeric(iconv(response, from = 'latin1', to = 'utf8')))
 
   res3
+}
