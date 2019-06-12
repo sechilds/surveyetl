@@ -3,8 +3,10 @@
 #' Return a list of fields describing CGPSS respondents
 #' @export
 cgpss_respondent_characteristics <- function() {
-  cgpss_excluded_fields() +
-  c( 'GENDER',
+  c(cgpss_excluded_fields(),
+  c( 'UNIV_RecordNum',
+     'SURVEY_YEAR',
+     'GENDER',
      'AGE',
      'RESIDENCE',
      'MARITAL',
@@ -30,7 +32,7 @@ cgpss_respondent_characteristics <- function() {
      'Disabl_Chronic',
      'Disabl_Else',
      'Disabl_Else_Specified',
-     'Disabl_NotRespond')
+     'Disabl_NotRespond'))
 }
 
 #' CGPSS Excluded Fields
@@ -41,9 +43,7 @@ cgpss_respondent_characteristics <- function() {
 #' table, we need a list of fields that aren't questions.
 #' @export
 cgpss_excluded_fields <- function() {
-  c('UNIV_RecordNum',
-    'SURVEY_YEAR',
-    'LANGUAGE',
+  c('LANGUAGE',
     'UNIV',
     'PROGRAM_NAME',
     'CIP',
