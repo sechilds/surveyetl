@@ -9,7 +9,7 @@ cgpss_structure <- read_csv('cgpss_2016_structure.csv',
                             col_types = 'icciic'
                             )
 
-qtable <- question_table(cgpss, cgpss_structure),
+qtable <- question_table(cgpss, cgpss_structure,
                          excluded_fields = cgpss_excluded_fields())
 
 write_csv(qtable, 'cgpss_2016_questions.csv', append = FALSE)
