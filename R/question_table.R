@@ -15,6 +15,7 @@
 #' question_table(cgpss, data_frame(field_name=character()))
 #'
 #' question_table(nsse, nsse_structure)
+#' @export
 question_table <- function(df, struct) {
   questions <- df %>%
     var_label %>%
