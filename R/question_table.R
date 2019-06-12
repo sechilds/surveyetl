@@ -20,7 +20,7 @@
 #' @export
 question_table <- function(df, struct, excluded_fields = NULL) {
   questions <- df %>%
-    dplyr::filter(-one_of(excluded_fields)) %>%
+    dplyr::select(-one_of(excluded_fields)) %>%
     var_label %>%
     Filter(. %>% is.null %>% `!`, .)
   data <- tibble(field_name = names(questions),
