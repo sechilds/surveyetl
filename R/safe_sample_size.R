@@ -7,11 +7,13 @@
 #' uses `value` to separate out the two groups.
 #'
 #' @param df The data frame containg the survey data.
+#' @param group The column in the data frame that splits
+#'   the two groups.
 #' @return A data frame with the count of the two groups.
 #' @export
-get_sample_size <- function(df) {
+get_sample_size <- function(df, group = value) {
   df %>%
-    group_by(value) %>%
+    group_by(group) %>%
     summarise(count = n()) %>%
     spread(value, count) %>%
     rename(n_comparison = `0`,
