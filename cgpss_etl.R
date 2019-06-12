@@ -7,7 +7,8 @@ cgpss <- read_sav('H:/GROUPS/Surveys/CGPSS/CGPSS-2016/Results/YORK_CGPSS_2016_SP
 
 cgpss_structure <- read_csv('cgpss_2016_structure.csv',
                             col_types = 'icciic'
-                            )
+                            ) %>%
+  select(-question_file_order, -question_text)
 
 qtable <- question_table(cgpss, cgpss_structure,
                          excluded_fields = cgpss_excluded_fields())
