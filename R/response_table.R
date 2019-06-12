@@ -43,17 +43,17 @@ response_table <- function(df,
     gather(field_name, response, -survey_id, -survey_year, -respondent_id) -> res1
 
   df %>%
-    select(-one_of(exclued_fields)) %>%
+    select(-one_of(excluded_fields)) %>%
     mutate(survey_id = survey_id,
            respondent_id = !! respondent_id_field,
            survey_year = !! survey_year_field) %>%
-    mutate_all(to_character) %>%
+    mutate_at(vars(-respondent_id, -survey_year, -survey_id), to_character) %>%
     select(-!! respondent_id_field, -!! survey_year_field) %>%
     gather(field_name, label, -survey_id, -survey_year, -respondent_id) -> res2
 
   res3 <- res1 %>%
     inner_join(res2,
-               by = c('survey_id', 'survey_year', 'respondent_id')) %>%
+               by = c('survey_id', 'survey_year', 'respondent_id', 'field_name')) %>%
     mutate(score = as.numeric(iconv(response, from = 'latin1', to = 'utf8')))
 
   res3
