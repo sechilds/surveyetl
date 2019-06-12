@@ -2,9 +2,13 @@
 
 export(cgpss_excluded_fields)
 export(cgpss_respondent_characteristics)
+export(compare_two_groups)
 export(current_git_commit)
+export(get_sample_size)
 export(question_table)
 export(respondent_table)
 export(response_table)
 export(safe_effect_size)
+export(safe_sample_size)
+export(safe_stats)
 export(safe_ttest)
