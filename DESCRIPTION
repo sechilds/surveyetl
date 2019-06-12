@@ -14,5 +14,8 @@ LazyData: true
 Imports:
     dplyr,
     labelled,
-    magrittr
+    magrittr,
+    broom,
+    purrr,
+    lsr
 RoxygenNote: 6.1.1.9000
