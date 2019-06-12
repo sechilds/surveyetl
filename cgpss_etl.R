@@ -5,7 +5,11 @@ library(surveyetl)
 
 cgpss <- read_sav('H:/GROUPS/Surveys/CGPSS/CGPSS-2016/Results/YORK_CGPSS_2016_SPSS_DATA.sav')
 
-qtable <- question_table(cgpss, data.frame(field_name=character()))
+qtable <- question_table(cgpss, data.frame(field_name=character()),
+                         excluded_fields = cgpss_excluded_fields())
+
+write_csv(qtable, 'cgpss_2016_questions.csv', append = FALSE)
+
 respondents <- respondent_table(cgpss,
                                 cgpss_respondent_characteristics(),
                                 survey_id = 'CGPSS',

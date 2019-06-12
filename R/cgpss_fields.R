@@ -17,6 +17,7 @@ cgpss_respondent_characteristics <- function() {
      'CHILDREN',
      'CITIZEN',
      'CITIZENOther_Specified',
+     'YEARSTUDY',
      'gBlack',
      'gEastAsia',
      'gSouthAsia',
@@ -75,7 +76,6 @@ cgpss_excluded_fields <- function() {
     'ACTUAL_STREAM_DIM',
     'UNIV_DEGREE',
     'UNIV_DEGREE_DIM',
-    'YEARSTUDY',
     'STARTED',
     'COMPLETED',
     'MODIFIED')
