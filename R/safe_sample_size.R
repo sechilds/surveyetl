@@ -13,11 +13,13 @@
 #' @export
 get_sample_size <- function(df) {
   df %>%
-    group_by(value) %>%
-    summarise(count = n()) %>%
-    spread(value, count) %>%
-    rename(n1 = `0`,
-           n2 = `1`)
+    dplyr::group_by(value) %>%
+    dplyr::summarise(count = n()) %>%
+    tidyr::spread(value, count) -> counts
+  group_names <- names(counts)
+  names(group_names) <- c('group1', 'group2')
+  names(counts) <- c('n1', 'n2')
+  bind_cols(counts, group_names)
 }
 
 #' Safe Sample Size
@@ -35,8 +37,10 @@ safe_sample_size <- function(df) {
   safe_get_sample_size <- purrr::safely(get_sample_size)
   res <- safe_get_sample_size(df)
   if (is.null(res$result)) {
-    return(dplyr::tibble(n_comparison = NA,
-                  n_group = NA))
+    return(dplyr::tibble(n1 = NA,
+                  n2 = NA,
+                  group1 = NA,
+                  group2 = NA))
   } else {
     return(res$result)
   }

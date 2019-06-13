@@ -21,7 +21,7 @@ create_triangle_field <- function(df) {
 
   df %>%
     mutate(triangle = ifelse(p.value < .05,
-                             ifelse(group_mean > comparison_mean,
+                             ifelse(estimate1 > estimate2,
                                     ifelse(abs(effect_size) < .3, up_hollow, up_solid),
                                     ifelse(abs(effect_size) < .3, down_hollow, down_solid)), ''))
 }
