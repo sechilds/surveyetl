@@ -46,9 +46,9 @@ swap_fields <- function(df, field1, field2) {
   field1 <- dplyr::enquo(field1)
   field2 <- dplyr::enquo(field2)
   df %>%
-    mutate(temp_field = !! field1) %>%
-    mutate(!!field1 = !! field2) %>%
-    mutate(!!field2 = temp_field) %>%
+    mutate(temp_field := !! field1) %>%
+    mutate(!!field1 := !! field2) %>%
+    mutate(!!field2 := temp_field) %>%
     select(-temp_field)
 }
 
