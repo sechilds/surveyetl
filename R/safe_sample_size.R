@@ -17,7 +17,8 @@ get_sample_size <- function(df) {
     dplyr::summarise(count = n()) %>%
     tidyr::spread(value, count) -> counts
   group_names <- names(counts)
-  names(group_names) <- c('group1', 'group2')
+  group_names <- tibble(group1 = group_names[1],
+                        group2 = group_names[2])
   names(counts) <- c('n1', 'n2')
   bind_cols(counts, group_names)
 }
