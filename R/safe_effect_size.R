@@ -13,9 +13,9 @@
 #' @param group A column in the data frame that will separate
 #'   the data into two separate groups. (Default `value`).
 #' @export
-safe_effect_size <- function(df, outcome = score, group = value) {
+safe_effect_size <- function(df) {
   safe_cohensD <- purrr::safely(lsr::cohensD)
-  res <- safe_cohensD(outcome~group, data = df)
+  res <- safe_cohensD(score~value, data = df)
   if (is.null(res$result)) {
     return(tibble(x = NA))
   } else {

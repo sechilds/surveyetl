@@ -3,6 +3,8 @@
 export(cgpss_excluded_fields)
 export(cgpss_respondent_characteristics)
 export(compare_two_groups)
+export(create_statistical_significance)
+export(create_triangle_field)
 export(current_git_commit)
 export(get_sample_size)
 export(question_table)

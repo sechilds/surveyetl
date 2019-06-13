@@ -8,6 +8,9 @@ get_sample_size(df)
 }
 \arguments{
 \item{df}{The data frame containg the survey data.}
+
+\item{group}{The column in the data frame that splits
+the two groups.}
 }
 \value{
 A data frame with the count of the two groups.

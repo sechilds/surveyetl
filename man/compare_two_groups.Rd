@@ -4,14 +4,13 @@
 \alias{compare_two_groups}
 \title{Compare Two Groups}
 \usage{
-compare_two_groups(df, fac, fac2, ...)
+compare_two_groups(df, comp_id, ...)
 }
 \arguments{
 \item{df}{The survey data frame}
 
-\item{fac}{The faculty code of the first faculty you are comparing.}
-
-\item{fac2}{The faculty code you are comparing `fac` with.}
+\item{comp_id}{The column of the data frame that separates the
+data into two groups.}
 
 \item{...}{The variables to group the dataset by.}
 }

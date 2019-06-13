@@ -4,7 +4,7 @@
 \alias{safe_ttest}
 \title{Safe T-Test}
 \usage{
-safe_ttest(df, outcome = score, group = value)
+safe_ttest(df)
 }
 \arguments{
 \item{df}{The data frame.}

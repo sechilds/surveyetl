@@ -4,7 +4,7 @@
 \alias{safe_effect_size}
 \title{Safe Effect Size}
 \usage{
-safe_effect_size(df, outcome = score, group = value)
+safe_effect_size(df)
 }
 \arguments{
 \item{df}{The data frame.}

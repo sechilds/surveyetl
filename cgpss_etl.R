@@ -31,3 +31,6 @@ responses %>%
   left_join(respondents, by = c('survey_id', 'survey_year', 'respondent_id')) %>%
   left_join(qtable, by = ('field_name')) -> full_survey
 
+full_survey %>%
+  filter(UNIV_FACULTY %in% c("AP", "SB")) %>%
+  compare_two_groups(UNIV_FACULTY) -> tests

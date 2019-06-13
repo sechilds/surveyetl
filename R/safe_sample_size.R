@@ -11,9 +11,9 @@
 #'   the two groups.
 #' @return A data frame with the count of the two groups.
 #' @export
-get_sample_size <- function(df, group = value) {
+get_sample_size <- function(df) {
   df %>%
-    group_by(group) %>%
+    group_by(value) %>%
     summarise(count = n()) %>%
     spread(value, count) %>%
     rename(n_comparison = `0`,

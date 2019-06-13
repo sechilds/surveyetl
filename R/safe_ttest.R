@@ -13,7 +13,7 @@
 #' @param group A column in the data frame that will separate
 #'   the data into two separate groups. (Default `value`).
 #' @export
-safe_ttest <- function(df, outcome = score, group = value) {
+safe_ttest <- function(df) {
   safe_t.test <- purrr::safely(t.test)
   res <- safe_t.test(score~value, data = df)
   if (is.null(res$result)) {
@@ -25,8 +25,13 @@ safe_ttest <- function(df, outcome = score, group = value) {
                   statistic = NA,
                   p.value = NA,
                   conf.low = NA,
-                  conf.high = NA))
+                  conf.high = NA,
+                  estimate1name = NA,
+                  estimate2name = NA))
   } else {
-    return(broom::tidy(res$result))
+    group_names = names(res$result$estimate)
+    names_tib = dplyr::tibble(estimate1name = group_names[1],
+                              estimate2name = group_names[2])
+    return(dplyr::bind_cols(broom::tidy(res$result), names_tib))
   }
 }
