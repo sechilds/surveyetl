@@ -16,8 +16,8 @@ get_sample_size <- function(df) {
     group_by(value) %>%
     summarise(count = n()) %>%
     spread(value, count) %>%
-    rename(n_comparison = `0`,
-           n_group = `1`)
+    rename(n1 = `0`,
+           n2 = `1`)
 }
 
 #' Safe Sample Size
