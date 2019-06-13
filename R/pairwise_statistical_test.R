@@ -20,7 +20,8 @@ pairwise_statistical_tests <- function(df, comp_id) {
     dplyr::pull(!! comp_id)
   group_pairs <- combinat::combn(groups, 2, simplify = FALSE)
   group_pairs %>%
-    purrr::map_dfr(function(x) {pairwise_test(df, comp_id, x)})
+    purrr::map_dfr(function(x) {pairwise_test(df, comp_id, x)}) -> res
+  bind_rows(res, reverse_pairwise_comparison(res))
 }
 
 
@@ -39,4 +40,33 @@ pairwise_test <- function(df, comp_id, pair) {
   df %>%
     dplyr::filter(!! comp_id %in% pair) %>%
     compare_two_groups(!! comp_id)
+}
+
+swap_fields <- function(df, field1, field2) {
+  field1 <- dplyr::enquo(field1)
+  field2 <- dplyr::enquo(field2)
+  df %>%
+    mutate(temp_field = !! field1) %>%
+    mutate(!!field1 = !! field2) %>%
+    mutate(!!field2 = temp_field) %>%
+    select(-temp_field)
+}
+
+reverse_triangle <- function(df) {
+  df %>%
+    dplyr::mutate(triangle = dplyr::case_when(triangle == 'US' ~ 'DS',
+                                              triangle == 'UH' ~ 'DH',
+                                              triangle == 'DS' ~ 'US',
+                                              triangle == 'DH' ~ 'UH',
+                                              TRUE ~ triangle))
+}
+
+reverse_pairwise_comparison <- function(df) {
+  df %>%
+    swap_fields(estimate1, estimate2) %>%
+    swap_fields(estimate1name, estimate2name) %>%
+    swap_fields(n1, n2) %>%
+    swap_fields(group1, group2) %>%
+    mutate(estimate = -estimate) %>%
+    reverse_triangle()
 }
