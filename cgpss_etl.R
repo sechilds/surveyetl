@@ -32,5 +32,8 @@ responses %>%
   left_join(qtable, by = ('field_name')) -> full_survey
 
 full_survey %>%
+  pairwise_statistical_tests(UNIV_FACULTY) -> pair1
+
+full_survey %>%
   filter(UNIV_FACULTY %in% c("AP", "SB")) %>%
   compare_two_groups(UNIV_FACULTY) -> tests

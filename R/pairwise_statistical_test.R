@@ -15,12 +15,12 @@
 pairwise_statistical_tests <- function(df, comp_id) {
   comp_id <- dplyr::enquo(comp_id)
   groups <- df %>%
-    select(!! comp_id) %>%
+    dplyr::select(!! comp_id) %>%
     unique() %>%
-    pull(!! comp_id)
+    dplyr::pull(!! comp_id)
   group_pairs <- combinat::combn(groups, 2, simplify = FALSE)
   group_pairs %>%
-    map_dfr(function(x) {pairwise_test(df, !! comp_id, x)})
+    purrr::map_dfr(function(x) {pairwise_test(df, comp_id, x)})
 }
 
 
@@ -37,6 +37,6 @@ pairwise_statistical_tests <- function(df, comp_id) {
 #' @export
 pairwise_test <- function(df, comp_id, pair) {
   df %>%
-    filter(!! comp_id %in% pair) %>%
+    dplyr::filter(!! comp_id %in% pair) %>%
     compare_two_groups(!! comp_id)
 }
