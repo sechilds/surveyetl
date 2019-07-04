@@ -19,10 +19,15 @@
 #' question_table(nsse, nsse_structure)
 #' @export
 question_table <- function(df, struct, excluded_fields = NULL) {
+  if (excluded_fields) {
   questions <- df %>%
-    dplyr::select(-one_of(excluded_fields)) %>%
+    dplyr::select(-one_of(excluded_fields))
+  } else {
+    questions <- df
+  }
+  questions %>%
     var_label %>%
-    Filter(. %>% is.null %>% `!`, .)
+    Filter(. %>% is.null %>% `!`, .) -> questions
   data <- tibble(field_name = names(questions),
                  question_text = questions) %>%
     unnest()
