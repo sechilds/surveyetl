@@ -19,7 +19,7 @@
 #' question_table(nsse, nsse_structure)
 #' @export
 question_table <- function(df, struct, excluded_fields = NULL) {
-  if (excluded_fields) {
+  if (is.null(excluded_fields) == FALSE) {
   questions <- df %>%
     dplyr::select(-one_of(excluded_fields))
   } else {
