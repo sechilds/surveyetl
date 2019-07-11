@@ -1,7 +1,7 @@
 Package: surveyetl
 Type: Package
 Title: Extract, Transform and Load Survey Data
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Stephen", "Childs", email = "sechilds@yorku.ca",
                   role = c("aut", "cre"))
 Maintainer: Stephen Childs <sechilds@yorku.ca>
