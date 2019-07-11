@@ -4,7 +4,7 @@
 #' @export
 cgpss_respondent_characteristics <- function() {
   c(cgpss_excluded_fields(),
-  c( 'UNIV_RecordNum',
+  c( 'SV_ALTRECORDNUM',
      'SURVEY_YEAR',
      'THESIS',
      'DEGREE_SELF_REPORT',
@@ -48,11 +48,11 @@ cgpss_respondent_characteristics <- function() {
 #' table, we need a list of fields that aren't questions.
 #' @export
 cgpss_excluded_fields <- function() {
-  c('LANGUAGE',
-    'UNIV',
-    'PROGRAM_NAME',
-    'CIP',
-    'IMMIGRATION',
+  c('Language',
+    'SV_UNIV',
+    'UNIV_PROGRAM_NAME',
+    'UNIV_ORIGINAL_CIP',
+    'UNIV_IMMIGRATION',
     'UNIV_YEARSTUDY',
     'UNIV_GENDER',
     'UNIV_PROGRAM_LEVEL',
@@ -61,11 +61,11 @@ cgpss_excluded_fields <- function() {
     'UNIV_ACRONYM',
     'UNIV_ACRONYM_DESC',
     'UNIV_IMPOSE_STREAM',
-    'CUSTOM1',
-    'CUSTOM2',
-    'CUSTOM3',
-    'CUSTOM4',
-    'CUSTOM5',
+    'CUSTOM_1',
+    'CUSTOM_2',
+    'CUSTOM_3',
+    'CUSTOM_4',
+    'CUSTOM_5',
     'UNIV_DISCIPLINE',
     'UNIV_DISCIPLINE_DIM_FR',
     'UNIV_DISCIPLINE_DIM_EN',
@@ -78,5 +78,12 @@ cgpss_excluded_fields <- function() {
     'UNIV_DEGREE_DIM',
     'STARTED',
     'COMPLETED',
-    'MODIFIED')
+    'MODIFIED',
+    'CONTACT_EMAIL',
+    'OPENING_DATE',
+    'CLOSING_DATE',
+    'TIME_OUT',
+    'INSTITUTION_SIZE',
+    'REGION',
+    'LAST_PAGE')
 }
