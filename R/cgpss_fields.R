@@ -51,6 +51,7 @@ cgpss_excluded_fields <- function() {
   c('Language',
     'LANGUAGE',
     'SV_UNIV',
+    'SV_YEAR',
     'UNIV_PROGRAM_NAME',
     'UNIV_ORIGINAL_CIP',
     'UNIV_IMMIGRATION',
