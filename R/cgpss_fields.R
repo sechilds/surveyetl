@@ -120,6 +120,8 @@ cgpss_excluded_fields <- function() {
     'SV_GDEBT_DIM',
     'SV_DISCIPLINE_DIM_EN',
     'SV_ACTUAL_STREAM',
-    'SV_ACTUAL_STREAM_DIM'
+    'SV_ACTUAL_STREAM_DIM',
+    'SIZE',
+    'REGION'
     )
 }
