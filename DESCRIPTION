@@ -17,5 +17,6 @@ Imports:
     magrittr,
     broom,
     purrr,
-    lsr
+    lsr,
+    combinat
 RoxygenNote: 6.1.1.9000
