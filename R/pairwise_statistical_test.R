@@ -16,7 +16,7 @@ pairwise_statistical_tests <- function(df, comp_id) {
   comp_id <- dplyr::enquo(comp_id)
   groups <- df %>%
     dplyr::select(!! comp_id) %>%
-    unique() %>%
+    dplyr::distinct() %>%
     dplyr::pull(!! comp_id)
   group_pairs <- combinat::combn(groups, 2, simplify = FALSE)
   group_pairs %>%
@@ -61,6 +61,7 @@ reverse_triangle <- function(df) {
                                               TRUE ~ triangle))
 }
 
+#' @export
 reverse_pairwise_comparison <- function(df) {
   df %>%
     swap_fields(estimate1, estimate2) %>%
