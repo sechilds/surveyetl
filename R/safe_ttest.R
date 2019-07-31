@@ -15,7 +15,7 @@
 #' @export
 safe_ttest <- function(df) {
   safe_t.test <- purrr::safely(t.test)
-  res <- safe_t.test(score~value, data = df)
+  res <- safe_t.test(SCORE~value, data = df)
   if (is.null(res$result)) {
     #warning(df)
     #warning(res$error)
