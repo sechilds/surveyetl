@@ -58,6 +58,8 @@ reverse_triangle <- function(df) {
                                               triangle == 'UH' ~ 'DH',
                                               triangle == 'DS' ~ 'US',
                                               triangle == 'DH' ~ 'UH',
+                                              is.null(triangle) ~ '',
+                                              is.na(triangle) ~ '',
                                               TRUE ~ triangle))
 }
 
