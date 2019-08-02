@@ -42,6 +42,26 @@ pairwise_test <- function(df, comp_id, pair) {
     compare_two_groups(!! comp_id)
 }
 
+#' Reverse Pairwise Comparisons
+#'
+#' Take a Pairwise Test and Reverse it
+#'
+#' This lets us do half the work of comparing
+#' between groups.
+#'
+#' @param df The dataframe to flip
+#' @return the flipped data frame
+#' @export
+reverse_pairwise_comparison <- function(df) {
+  df %>%
+    swap_fields(estimate1, estimate2) %>%
+    swap_fields(estimate1name, estimate2name) %>%
+    swap_fields(n1, n2) %>%
+    swap_fields(group1, group2) %>%
+    mutate(estimate = -estimate) %>%
+    reverse_triangle()
+}
+
 swap_fields <- function(df, field1, field2) {
   field1 <- dplyr::enquo(field1)
   field2 <- dplyr::enquo(field2)
@@ -63,13 +83,3 @@ reverse_triangle <- function(df) {
                                               TRUE ~ ''))
 }
 
-#' @export
-reverse_pairwise_comparison <- function(df) {
-  df %>%
-    swap_fields(estimate1, estimate2) %>%
-    swap_fields(estimate1name, estimate2name) %>%
-    swap_fields(n1, n2) %>%
-    swap_fields(group1, group2) %>%
-    mutate(estimate = -estimate) %>%
-    reverse_triangle()
-}
