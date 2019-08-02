@@ -11,7 +11,7 @@
 #' current_git_commit()
 #' @export
 current_git_commit <- function(docker = TRUE) {
-  git_command <- if_else(docker, 'cd /home/rstudio/nsse2017/; git rev-parse HEAD',
+  git_command <- dplyr::if_else(docker, 'cd /home/rstudio/nsse2017/; git rev-parse HEAD',
                          'git rev-parse HEAD')
   system(git_command, intern = TRUE)
 }

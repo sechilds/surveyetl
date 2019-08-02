@@ -58,7 +58,7 @@ reverse_pairwise_comparison <- function(df) {
     swap_fields(estimate1name, estimate2name) %>%
     swap_fields(n1, n2) %>%
     swap_fields(group1, group2) %>%
-    mutate(estimate = -estimate) %>%
+    dplyr::mutate(estimate = -estimate) %>%
     reverse_triangle()
 }
 
