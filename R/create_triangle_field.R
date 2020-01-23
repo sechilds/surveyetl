@@ -20,8 +20,9 @@ create_triangle_field <- function(df) {
   down_solid = 'DS'
 
   df %>%
-    mutate(triangle = ifelse(p.value < .05,
-                             ifelse(estimate1 > estimate2,
-                                    ifelse(abs(effect_size) < .3, up_hollow, up_solid),
-                                    ifelse(abs(effect_size) < .3, down_hollow, down_solid)), ''))
+    mutate(triangle = if_else(p.value < .05,
+                             if_else(estimate1 > estimate2,
+                                    if_else(abs(effect_size) < .3, up_hollow, up_solid),
+                                    if_else(abs(effect_size) < .3, down_hollow, down_solid)), '',
+                             missing = NA_character_))
 }

@@ -38,10 +38,10 @@ safe_sample_size <- function(df) {
   safe_get_sample_size <- purrr::safely(get_sample_size)
   res <- safe_get_sample_size(df)
   if (is.null(res$result)) {
-    return(dplyr::tibble(n1 = NA,
-                  n2 = NA,
-                  group1 = NA,
-                  group2 = NA))
+    return(dplyr::tibble(n1 = NA_integer_,
+                  n2 = NA_integer_,
+                  group1 = NA_character_,
+                  group2 = NA_character_))
   } else {
     return(res$result)
   }

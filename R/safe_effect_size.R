@@ -17,7 +17,7 @@ safe_effect_size <- function(df) {
   safe_cohensD <- purrr::safely(lsr::cohensD)
   res <- safe_cohensD(SCORE~value, data = df)
   if (is.null(res$result)) {
-    return(tibble(x = NA))
+    return(tibble(x = NA_real_))
   } else {
     return(broom::tidy(res$result))
   }

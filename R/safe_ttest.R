@@ -19,15 +19,18 @@ safe_ttest <- function(df) {
   if (is.null(res$result)) {
     #warning(df)
     #warning(res$error)
-    return(dplyr::tibble(estimate = NA,
-                  estimate1 = NA,
-                  estimate2 = NA,
-                  statistic = NA,
-                  p.value = NA,
-                  conf.low = NA,
-                  conf.high = NA,
-                  estimate1name = NA,
-                  estimate2name = NA))
+    return(dplyr::tibble(estimate = NA_real_,
+                  estimate1 = NA_real_,
+                  estimate2 = NA_real_,
+                  statistic = NA_real_,
+                  p.value = NA_real_,
+                  conf.low = NA_real_,
+                  conf.high = NA_real_,
+                  estimate1name = NA_character_,
+                  estimate2name = NA_character_,
+                  method = NA_character_,
+                  alternative = NA_character_,
+                  parameter = NA_real_))
   } else {
     group_names = names(res$result$estimate)
     names_tib = dplyr::tibble(estimate1name = group_names[1],

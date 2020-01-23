@@ -13,7 +13,8 @@
 #' @export
 create_statistical_significance <- function(df) {
   df %>%
-    mutate(significance = ifelse(p.value < .001, '***',
-                                 ifelse(p.value < .01, '**',
-                                        ifelse(p.value < .05, '*', ''))))
+    mutate(significance = if_else(p.value < .001, '***',
+                                 if_else(p.value < .01, '**',
+                                        if_else(p.value < .05, '*', '')),
+                                 missing = NA_character_))
 }
